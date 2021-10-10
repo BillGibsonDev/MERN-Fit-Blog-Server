@@ -7,6 +7,7 @@ const PostModel = require('./models/Post');
 
 app.use(express.json());
 
+
 const dotenv = require('dotenv').config()
 
 const host = process.env.HOST || '0.0.0.0';
