@@ -81,10 +81,10 @@ const PostSchema = new mongoose.Schema({
     },
     //
     //
-    postConclusion: {
+    conclusion: {
         type: String,
     },
-    postConclusionHeader: {
+    conclusionHeader: {
         type: String,
     },
 })

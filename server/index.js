@@ -54,8 +54,8 @@ app.post("/insert", cors(), async(req, res) => {
     //
     // conclusion
     //
-    const postConclusionHeader = req.body.postConclusionHeader;
-    const postConclusion = req.body.postConclusion;
+    const conclusionHeader = req.body.conclusionHeader;
+    const conclusion = req.body.conclusion;
     //
     const post = new PostModel({ 
         postTitle,
@@ -85,8 +85,8 @@ app.post("/insert", cors(), async(req, res) => {
         postImage4, 
         postLink4,
         //
-        postConclusion, 
-        postConclusionHeader,
+        conclusion, 
+        conclusionHeader,
     });
     try {
         await post.save();
