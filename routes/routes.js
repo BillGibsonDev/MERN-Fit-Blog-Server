@@ -5,7 +5,7 @@ const router = express.Router();
 dotenv.config();
 
 // read
-//router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
+router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
 //router.get(`/${process.env.NODE_ENV_GET_POST_URL}/:postId`, getPost);
 
 // update
