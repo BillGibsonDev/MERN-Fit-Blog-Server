@@ -1,11 +1,16 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
+
+
+import { createUser } from "../controllers/UserController.js";
+import { createPost } from "../controllers/PostController.js";
+
 const router = express.Router();
 dotenv.config();
 
 // read
-router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
+//router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
 //router.get(`/${process.env.NODE_ENV_GET_POST_URL}/:postId`, getPost);
 
 // update
@@ -13,7 +18,7 @@ router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
 
 
 // create
-//router.post(`/${process.env.NODE_ENV_ADD_POST_URL}`, createPost);
+router.post(`/${process.env.NODE_ENV_ADD_POST_URL}`, createPost);
 //router.post(`/${process.env.NODE_ENV_SEND_COMMENT_URL}/:postId/comments`, createComment);
 router.post(`/${process.env.NODE_ENV_REGISTER_URL}`, createUser);
 

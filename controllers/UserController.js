@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import cookieParser from "cookie-parser";
-import { UserModel } from "../models/User.js";
+import { UserModel } from "../models/Users.js"
 import { createTokens, validateToken } from "../JWT.js";
 
 const router = express.Router();
