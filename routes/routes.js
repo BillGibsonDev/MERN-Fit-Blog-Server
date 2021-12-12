@@ -4,26 +4,27 @@ import dotenv from 'dotenv';
 
 
 import { createUser } from "../controllers/UserController.js";
-import { createPost } from "../controllers/PostController.js";
+import { createPost, getPost, getPosts, deletePost, editPost } from "../controllers/PostController.js";
+import { createComment, deleteComment } from "../controllers/CommentController.js";
 
 const router = express.Router();
 dotenv.config();
 
 // read
-//router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
-//router.get(`/${process.env.NODE_ENV_GET_POST_URL}/:postId`, getPost);
+router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
+router.get(`/${process.env.NODE_ENV_GET_POST_URL}/:postId`, getPost);
 
 // update
-//router.post(`/${process.env.NODE_ENV_UPDATE_POST_URL}/:postId`, editPost);
+router.post(`/${process.env.NODE_ENV_UPDATE_POST_URL}/:postId`, editPost);
 
 
 // create
 router.post(`/${process.env.NODE_ENV_ADD_POST_URL}`, createPost);
-//router.post(`/${process.env.NODE_ENV_SEND_COMMENT_URL}/:postId/comments`, createComment);
+router.post(`/${process.env.NODE_ENV_SEND_COMMENT_URL}/:postId/comments`, createComment);
 router.post(`/${process.env.NODE_ENV_REGISTER_URL}`, createUser);
 
 // delete
-//router.delete(`/${process.env.NODE_ENV_DELETE_POST_URL}/:postId`, deletePost);
-//router.post(`/${process.env.NODE_ENV_DELETE_COMMENT_URL}/:postId/:commentId`, deleteComment);
+router.delete(`/${process.env.NODE_ENV_DELETE_POST_URL}/:postId`, deletePost);
+router.post(`/${process.env.NODE_ENV_DELETE_COMMENT_URL}/:postId/:commentId`, deleteComment);
 
 export default router;

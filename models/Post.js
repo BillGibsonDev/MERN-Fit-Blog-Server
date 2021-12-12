@@ -1,22 +1,5 @@
 import mongoose from 'mongoose';
 
-const SectionSchema = new mongoose.Schema({
-    sectionTitle: String,
-    sectionParagrapgh: String,
-    sectionImage: String,
-    sectionLink: String,
-})
-
-export const SectionModel = mongoose.model("Section", SectionSchema);
-
-const CommentSchema = new mongoose.Schema({
-    comment: String,
-    date: String,
-    author: String,
-})
-
-export const CommentModel = mongoose.model("Comment", CommentSchema);
-
 const PostSchema = new mongoose.Schema({
     postTitle: {
         type: String,
@@ -38,9 +21,18 @@ const PostSchema = new mongoose.Schema({
     },
     //
     //
-    sections:[{type: SectionSchema, ref: "sections"}],
+    sections:[{
+        sectionTitle: String,
+        sectionParagrapgh: String,
+        sectionImage: String,
+        sectionLink: String,
+    }],
     //
-    comments: [{ type: CommentSchema, ref: "comments" }],
+    comments: [{ 
+        comment: String,
+        date: String,
+        author: String, 
+    }],
     //
     likes: {
         type: Number, default: 0,
