@@ -53,6 +53,38 @@ export const getPost = async (req, res) => {
     }
 }
 
+export const addLike = async (req, res) => {
+    const { postId } = req.params;
+    const { username } = req.body;
+
+    await ProjectModel.findOneAndUpdate(
+        { "_id": postId },
+        {
+            $push:{
+                likes: {
+                    username,  
+                }
+            }
+        },
+    );
+    res.json("Like removed!");
+}
+
+export const removeLike = async (req, res) => {
+    const { postId } = req.params;
+    const { username } = req.body;
+
+    await ProjectModel.findOneAndUpdate(
+        { "_id": postId },
+        {
+            $pull:{
+                "likes.$.username": username,
+            }
+        },
+    );
+    res.json("Like removed!");
+}
+
 export const editPost = async (req, res) => {
     const { postId } = req.params;
     const { postTitle } = req.body;
