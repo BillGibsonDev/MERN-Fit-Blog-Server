@@ -57,7 +57,8 @@ export const addLike = async (req, res) => {
     const { postId } = req.params;
     const { username } = req.body;
     console.log(postId, username)
-    await ProjectModel.findOneAndUpdate(
+    try {
+        await ProjectModel.findOneAndUpdate(
         { "_id": postId },
         {
             $push:{
@@ -68,6 +69,9 @@ export const addLike = async (req, res) => {
         },
     );
     res.json("Like added!");
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 }
 
 export const removeLike = async (req, res) => {
