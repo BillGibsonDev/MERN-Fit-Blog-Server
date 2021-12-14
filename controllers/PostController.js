@@ -67,7 +67,7 @@ export const addLike = async (req, res) => {
             }
         },
     );
-    res.json("Like removed!");
+    res.json("Like added!");
 }
 
 export const removeLike = async (req, res) => {
