@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 
 
-import { createUser } from "../controllers/UserController.js";
+import { createUser, loginUser, confirmAdmin, confirmRole, getRole } from "../controllers/UserController.js";
 import { createPost, getPost, getPosts, deletePost, editPost } from "../controllers/PostController.js";
 import { createComment, deleteComment } from "../controllers/CommentController.js";
 
@@ -13,6 +13,11 @@ dotenv.config();
 // read
 router.get(`/${process.env.NODE_ENV_GET_POSTS_URL}`, getPosts);
 router.get(`/${process.env.NODE_ENV_GET_POST_URL}/:postId`, getPost);
+router.post(`/${process.env.NODE_ENV_LOGIN_URL}`, loginUser);
+router.post(`/${process.env.NODE_ENV_SET_ROLE_URL}`, getRole);
+router.post(`/${process.env.NODE_ENV_ADMIN_CONFIRM_URL}`, confirmAdmin);
+router.post(`/${process.env.NODE_ENV_ROLE_CONFIRM_URL}`, confirmRole);
+
 
 // update
 router.post(`/${process.env.NODE_ENV_UPDATE_POST_URL}/:postId`, editPost);
