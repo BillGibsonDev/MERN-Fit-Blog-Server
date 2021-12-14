@@ -34,9 +34,9 @@ const PostSchema = new mongoose.Schema({
         author: String, 
     }],
     //
-    likes: {
-        type: Number, default: 0,
-    },
+    likes: [{
+        username: String,
+    }],
     //
     conclusion: {
         type: String,
