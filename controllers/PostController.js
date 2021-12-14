@@ -58,7 +58,7 @@ export const addLike = async (req, res) => {
     const { username } = req.body;
 
     try {
-        await PostModel.findIdAndUpdate(
+        await PostModel.findOneAndUpdate(
         { "_id": postId },
         {
             $push:{
