@@ -8,7 +8,13 @@ import { createTokens, validateToken } from "../JWT.js";
 const router = express.Router();
 
 export const createUser = async (req, res) => {
-    const { username, password, userRole, email } = req.body;
+    const { username, password, userRole, email, joinDate } = req.body;
+
+  const user = await UserModel.findOneAndUpdate({username: username });
+  if (!user) res.status(400).json({ error: "Username already exsists!" });
+
+  const mail = await UserModel.findOneAndUpdate({email: email });
+  if (!mail) res.status(400).json({ error: "Email already used!" });
 
       bcrypt.hash(password, 10).then((hash) => {
         UserModel.create({
@@ -16,6 +22,7 @@ export const createUser = async (req, res) => {
           email: email,
           password: hash,
           role: userRole,
+          joinDate: joinDate,
         })
           .then(() => {
             res.json("USER REGISTERED");
@@ -114,4 +121,23 @@ export const updateUser = async (req, res) =>{
     } else {
       res.json("Does not match")
     }
+  };
+
+   export const getDate = async (req, res) =>{
+    const { username, password } = req.body;
+
+    const user = await UserModel.findOne({username: username });
+  
+    if (!user) res.status(400).json({ error: "User Doesn't Exist" });
+  
+    const userPassword = user.password;
+    bcrypt.compare(password, userPassword).then((match) => {
+      if (!match) {
+        res
+          .status(400)
+          .json({ error: "Wrong Username or Password!" });
+      } else {
+        res.json(user.joinDate);
+      }
+    });
   };
