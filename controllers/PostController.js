@@ -56,9 +56,9 @@ export const getPost = async (req, res) => {
 export const addLike = async (req, res) => {
     const { postId } = req.params;
     const { username } = req.body;
-    console.log(postId, username)
+
     try {
-        await ProjectModel.findOneAndUpdate(
+        await PostModel.findIdAndUpdate(
         { "_id": postId },
         {
             $push:{
