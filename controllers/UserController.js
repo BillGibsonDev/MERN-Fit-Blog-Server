@@ -8,11 +8,12 @@ import { createTokens, validateToken } from "../JWT.js";
 const router = express.Router();
 
 export const createUser = async (req, res) => {
-    const { username, password, userRole } = req.body;
+    const { username, password, userRole, email } = req.body;
 
       bcrypt.hash(password, 10).then((hash) => {
         UserModel.create({
           username: username,
+          email: email,
           password: hash,
           role: userRole,
         })
@@ -31,7 +32,7 @@ export const createUser = async (req, res) => {
   export const loginUser = async (req, res) =>{
     const { username, password, lastLogin } = req.body;
 
-    const user = await UserModel.findOneAndUpdate({username: username },{lastLogin: lastLogin});
+    const user = await UserModel.findOneAndUpdate({username: username } ,{lastLogin: lastLogin});
   
     if (!user) res.status(400).json({ error: "Wrong Username or Password!" });
   
@@ -106,8 +107,9 @@ export const updateUser = async (req, res) =>{
     const { role } = req.body;
     const buf1 = role;
     const buf2 = process.env.NODE_ENV_ADMIN_SECRET;
-    const buf3 = process.env.NODE_ENV_USER_SECRET;
-    if( buf1 === buf2 || buf3){
+    const buf3 = process.env.NODE_ENV_CREATOR_SECRET;
+    const buf4 = process.env.NODE_ENV_USER_SECRET;
+    if( buf1 === buf2 || buf3 || buf4){
       res.json("Role Confirmed");
     } else {
       res.json("Does not match")
