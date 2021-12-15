@@ -6,30 +6,16 @@ const router = express.Router();
 
 export const createPost = async (req, res) => {
 
-const { postTitle, linkTitle, postDate, thumbnail, postIntro, postBrief , sections, conclusionTitle, conclusion } = req.body
+const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, postBrief , sections, conclusionTitle, conclusion } = req.body
     
+    const newPost = new PostModel({ author, postTitle, linkTitle, postDate, thumbnail, postIntro, postBrief , sections, conclusionTitle, conclusion })
     try {
-        await new PostModel.create({
-            postTitle,
-            linkTitle,
-            postDate,
-            thumbnail,
-            postIntro,
-            postBrief,
-            sections: [
-                {
-                    title: title,
-                    paragragh: paragragh,
-                    link: link,
-                    image: image,
-                },
-            ],
-            conclusionTitle,
-            conclusion,
-        })
-    } catch (err) {
-        console.log(err)
-    }
+        await newPost.save();
+
+        res.status(201).json("Post Created");
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }   
 }
 
 export const getPosts = async (req, res) => { 
