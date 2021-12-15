@@ -6,9 +6,9 @@ const router = express.Router();
 
 export const createPost = async (req, res) => {
 
-const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, postBrief , sections, conclusionTitle, conclusion } = req.body
+const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion } = req.body
     
-    const newPost = new PostModel({ author, postTitle, linkTitle, postDate, thumbnail, postIntro, postBrief , sections, conclusionTitle, conclusion })
+    const newPost = new PostModel({ author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion })
     try {
         await newPost.save();
 
@@ -41,18 +41,29 @@ export const getPost = async (req, res) => {
 
 export const editPost = async (req, res) => {
     const { postId } = req.params;
-    const { postTitle } = req.body;
-
-    await PostModel.findOneAndUpdate(
-        { "_id": postId },
+    const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion } = req.body
+    
+    try {
+        await PostModel.findByIdAndUpdate({ "_id": posttId },
         {
             $set:{
+                author: author,
                 postTitle: postTitle,
+                linkTitle: linkTitle,
+                postDate: postDate,
+                thumbnail: thumbnail,
+                postIntro: postIntro,
+                sections: sections,
+                conclusionTitle: conclusionTitle,
+                conclusion: conclusion,
             }
         },
-        { new: true }
+        {new: true}
     );
-    res.json("Post Updated");
+        res.status(201).json("Post Updated");
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }  
 }
 
 export const deletePost = async (req, res) => {
