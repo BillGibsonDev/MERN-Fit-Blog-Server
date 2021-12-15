@@ -26,7 +26,7 @@ const PostSchema = new mongoose.Schema({
     //
     sections:[{
         title: String,
-        paragrapgh: String,
+        paragraph: String,
         image: String,
         link: String,
     }],
