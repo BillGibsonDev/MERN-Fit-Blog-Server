@@ -44,7 +44,7 @@ export const editPost = async (req, res) => {
     const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion } = req.body
     
     try {
-        await PostModel.findByIdAndUpdate({ "_id": posttId },
+        await PostModel.findByIdAndUpdate({ "_id": postId },
         {
             $set:{
                 author: author,
