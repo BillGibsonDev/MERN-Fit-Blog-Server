@@ -53,9 +53,9 @@ export const editPost = async (req, res) => {
                 postDate: postDate,
                 thumbnail: thumbnail,
                 postIntro: postIntro,
-                sections: sections,
                 conclusionTitle: conclusionTitle,
                 conclusion: conclusion,
+                sections: sections,
             }
         },
         {new: true}
