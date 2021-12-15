@@ -57,9 +57,14 @@ export const findLike = async (req, res) => {
     const { postId } = req.params;
     const { username } = req.body;
   
-    if (PostModel.findOne({"_id": postId },{username: username}) === username){
+    const like = await PostModel.findOne({"_id": postId })
+
+    if(like.filter(likes => likes.username === username) === 0){
+        res.json("Not liked");
+    } else {
         res.json("Liked!");
-    };
+    }
+
 }
 
 export const addLike = async (req, res) => {
