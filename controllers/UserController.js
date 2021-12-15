@@ -10,11 +10,11 @@ const router = express.Router();
 export const createUser = async (req, res) => {
     const { username, password, userRole, email, joinDate } = req.body;
 
-  const user = await UserModel.findOneAndUpdate({username: username });
-  if (!user) res.status(400).json({ error: "Username already exsists!" });
+  const user = await UserModel.findOne({username: username });
+  if (user === username) res.status(400).json({ error: "Username already exsists!" });
 
-  const mail = await UserModel.findOneAndUpdate({email: email });
-  if (!mail) res.status(400).json({ error: "Email already used!" });
+  const mail = await UserModel.findOne({email: email });
+  if (mail === email) res.status(400).json({ error: "Email already used!" });
 
       bcrypt.hash(password, 10).then((hash) => {
         UserModel.create({
@@ -37,9 +37,9 @@ export const createUser = async (req, res) => {
 
 
   export const loginUser = async (req, res) =>{
-    const { username, password, lastLogin } = req.body;
+    const { username, password } = req.body;
 
-    const user = await UserModel.findOneAndUpdate({username: username } ,{lastLogin: lastLogin});
+    const user = await UserModel.findOne({username: username });
   
     if (!user) res.status(400).json({ error: "Wrong Username or Password!" });
   
