@@ -44,7 +44,7 @@ const PostSchema = new mongoose.Schema({
     conclusion: {
         type: String,
     },
-    conclusionHeader: {
+    conclusionTitle: {
         type: String,
     },
 })
