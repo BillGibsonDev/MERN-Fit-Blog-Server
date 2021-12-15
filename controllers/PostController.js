@@ -18,10 +18,10 @@ const { postTitle, linkTitle, postDate, thumbnail, postIntro, postBrief , sectio
             postBrief,
             sections: [
                 {
-                    sectionTitle: sectionTitle,
-                    sectionParagragh: sectionParagragh,
-                    sectionLink: sectionLink,
-                    sectionImage: sectionImage,
+                    title: title,
+                    paragragh: paragragh,
+                    link: link,
+                    image: image,
                 },
             ],
             conclusionTitle,
@@ -48,66 +48,6 @@ export const getPost = async (req, res) => {
         const post = await PostModel.findById(postId);
         
         res.status(200).json(post);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-}
-
-export const findLike = async (req, res) => {
-    const { postId } = req.params;
-    const { username } = req.body;
-  
-    
-try {
-    const like = await PostModel.findOne({ _id: postId, likes: {$elemMatch: { username: username}}})
-
-    if(!like){
-        res.json("Not liked");
-    } else {
-        res.json("Liked!");
-    }
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-}
-
-export const addLike = async (req, res) => {
-    const { postId } = req.params;
-    const { username } = req.body;
-
-    try {
-        await PostModel.findOneAndUpdate(
-        { "_id": postId },
-        {
-            $push:{
-                likes: {
-                    username,  
-                }
-            }
-        },
-    );
-    res.json("Like added!");
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-}
-
-export const removeLike = async (req, res) => {
-    const { postId } = req.params;
-    const { username } = req.body;
-
-    try {
-        await PostModel.findOneAndUpdate(
-        { "_id": postId },
-        {
-            $pull:{
-                likes: {
-                    username,  
-                }
-            }
-        },
-    );
-    res.json("Like removed!");
     } catch (error) {
         res.status(404).json({ message: error.message });
     }

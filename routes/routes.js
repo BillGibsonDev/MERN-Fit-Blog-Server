@@ -4,8 +4,9 @@ import dotenv from 'dotenv';
 
 
 import { createUser, loginUser, confirmAdmin, confirmRole, getRole, getDate } from "../controllers/UserController.js";
-import { createPost, getPost, getPosts, deletePost, editPost, addLike, removeLike, findLike } from "../controllers/PostController.js";
+import { createPost, getPost, getPosts, deletePost, editPost } from "../controllers/PostController.js";
 import { createComment, deleteComment } from "../controllers/CommentController.js";
+import { addLike, removeLike, findLike } from "../controllers/LikeController.js";
 
 const router = express.Router();
 dotenv.config();

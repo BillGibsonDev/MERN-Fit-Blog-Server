@@ -22,10 +22,10 @@ const PostSchema = new mongoose.Schema({
     //
     //
     sections:[{
-        sectionTitle: String,
-        sectionParagrapgh: String,
-        sectionImage: String,
-        sectionLink: String,
+        title: String,
+        paragrapgh: String,
+        image: String,
+        link: String,
     }],
     //
     comments: [{ 
