@@ -53,6 +53,17 @@ export const getPost = async (req, res) => {
     }
 }
 
+export const findLike = async (req, res) => {
+    const { postId } = req.params;
+    const { username } = req.body;
+
+    const user = await PostModel.findOneAndUpdate({"_id": postId },{username: username});
+  
+    if (!user) res.status(400).json({ error: "Wrong Username or Password!" });
+
+    res.json("Liked!");
+}
+
 export const addLike = async (req, res) => {
     const { postId } = req.params;
     const { username } = req.body;
