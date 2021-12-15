@@ -78,15 +78,21 @@ export const removeLike = async (req, res) => {
     const { postId } = req.params;
     const { username } = req.body;
 
-    await ProjectModel.findOneAndUpdate(
+    try {
+        await PostModel.findOneAndUpdate(
         { "_id": postId },
         {
             $pull:{
-                "likes.$.username": username,
+                likes: {
+                    username,  
+                }
             }
         },
     );
     res.json("Like removed!");
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
 }
 
 export const editPost = async (req, res) => {
