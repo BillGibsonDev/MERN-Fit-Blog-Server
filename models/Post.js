@@ -19,9 +19,6 @@ const PostSchema = new mongoose.Schema({
     thumbnail: {
         type: String,
     },
-    postBrief: {
-        type: String,
-    },
     //
     //
     sections:[{
@@ -45,6 +42,9 @@ const PostSchema = new mongoose.Schema({
         type: String,
     },
     conclusionTitle: {
+        type: String,
+    },
+    tag: {
         type: String,
     },
 })

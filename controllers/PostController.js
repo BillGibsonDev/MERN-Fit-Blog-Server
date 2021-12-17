@@ -6,9 +6,9 @@ const router = express.Router();
 
 export const createPost = async (req, res) => {
 
-const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion } = req.body
+const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion, tag } = req.body
     
-    const newPost = new PostModel({ author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion })
+    const newPost = new PostModel({ author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion, tag })
     try {
         await newPost.save();
 
@@ -41,7 +41,7 @@ export const getPost = async (req, res) => {
 
 export const editPost = async (req, res) => {
     const { postId } = req.params;
-    const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion } = req.body
+    const { author, postTitle, linkTitle, postDate, thumbnail, postIntro, sections, conclusionTitle, conclusion, tag } = req.body
     
     try {
         await PostModel.findOneAndUpdate({ "_id": postId },
@@ -55,6 +55,7 @@ export const editPost = async (req, res) => {
                 postIntro: postIntro,
                 conclusionTitle: conclusionTitle,
                 conclusion: conclusion,
+                tag: tag,
                 sections: sections,
             }
         },
