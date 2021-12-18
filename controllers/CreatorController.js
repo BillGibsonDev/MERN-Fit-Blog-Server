@@ -5,13 +5,14 @@ import { CreatorModel } from "../models/Creator.js"
 const router = express.Router();
 
 export const createCreator = async (req, res) => {
-    const { avatar, authorUsername, creator, twitter, instagram, linkedin, youtube, other, bio } = req.body;
+    const { avatar, authorUsername, creator, twitter, instagram, linkedin, youtube, other, bio, location } = req.body;
 
 
     try {
         CreatorModel.create({
             creator: creator,
             authorUsername: authorUsername,
+            location: location,
             avatar: avatar,
             twitter: twitter,
             linkedin: linkedin,

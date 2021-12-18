@@ -9,6 +9,9 @@ const CreatorSchema = new mongoose.Schema({
     avatar: {
         type: String,
     },
+    location: {
+        type: String,
+    },
     authorUsername: {
         type: String,
     },
