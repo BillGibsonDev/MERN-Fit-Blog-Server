@@ -30,23 +30,23 @@ export const getCreator = async (req, res) => {
     const { authorUsername } = req.params;
 
     try {
-        const author = await CreatorModel.findOne({username: authorUsername});
+        const author = await CreatorModel.findOne(authorUsername);
         
         res.status(200).json(author);
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(404).json({ error });
     }
 };
 
 
 export const editCreator = async (req, res) => {
     const { creatorId } = req.params;
-    const { creator, twitter, avatar, instagram, linkedin, youtube, other, bio, username } = req.body;
+    const { creator, twitter, avatar, instagram, linkedin, youtube, other, bio, authorUsername } = req.body;
 
     try {
         CreatorModel.findOneAndUpdate({creatorId}, {
             creator: creator,
-            username: username,
+            authorUsername: authorUsername,
             avatar: avatar,
             twitter: twitter,
             linkedin: linkedin,

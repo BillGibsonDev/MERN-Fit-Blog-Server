@@ -9,7 +9,7 @@ const CreatorSchema = new mongoose.Schema({
     avatar: {
         type: String,
     },
-    username: {
+    authorUsername: {
         type: String,
     },
     role: {
