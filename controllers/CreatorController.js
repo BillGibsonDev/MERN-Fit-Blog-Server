@@ -5,13 +5,13 @@ import { CreatorModel } from "../models/Creator.js"
 const router = express.Router();
 
 export const createCreator = async (req, res) => {
-    const { avatar, username, creator, twitter, instagram, linkedin, youtube, other, bio } = req.body;
+    const { avatar, authorUsername, creator, twitter, instagram, linkedin, youtube, other, bio } = req.body;
 
 
     try {
         CreatorModel.create({
             creator: creator,
-            username: username,
+            authorUsername: authorUsername,
             avatar: avatar,
             twitter: twitter,
             linkedin: linkedin,
@@ -30,7 +30,7 @@ export const getCreator = async (req, res) => {
     const { authorUsername } = req.params;
 
     try {
-        const author = await CreatorModel.findOne({authorUsername: authorUsername});
+        const author = await CreatorModel.find({authorUsername: authorUsername});
         
         res.status(200).json(author);
     } catch (error) {
