@@ -19,7 +19,7 @@ router.post(`/${process.env.NODE_ENV_ADMIN_CONFIRM_URL}`, confirmAdmin);
 router.post(`/${process.env.NODE_ENV_ROLE_CONFIRM_URL}`, confirmRole);
 router.post(`/${process.env.NODE_ENV_GET_DATE_URL}`, getDate);
 router.post(`/${process.env.NODE_ENV_FIND_LIKE_URL}/:postId`, findLike);
-router.post(`/${process.env.NODE_ENV_GET_CREATOR_URL}/:authorUsername`, getCreator);
+router.get(`/${process.env.NODE_ENV_GET_CREATOR_URL}/:authorUsername`, getCreator);
 
 // update
 router.post(`/${process.env.NODE_ENV_UPDATE_POST_URL}/:postId`, editPost);
