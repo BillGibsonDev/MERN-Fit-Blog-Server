@@ -27,10 +27,10 @@ export const createCreator = async (req, res) => {
 };
 
 export const getCreator = async (req, res) => {
-    const { username } = req.params;
+    const { authorUsername } = req.params;
 
     try {
-        const author = await CreatorModel.findOne(username);
+        const author = await CreatorModel.findOne({username: authorUsername});
         
         res.status(200).json(author);
     } catch (error) {
