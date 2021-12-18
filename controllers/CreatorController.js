@@ -5,21 +5,21 @@ import { CreatorModel } from "../models/Creator.js"
 const router = express.Router();
 
 export const createCreator = async (req, res) => {
-    const { creator, twitter, instagram, linkedin, youtube, other, bio } = req.body;
+    const { avatar, creator, twitter, instagram, linkedin, youtube, other, bio } = req.body;
 
 
-try {
-   CreatorModel.create({
-        creator: creator,
-        avatar: avatar,
-        twitter: twitter,
-        linkedin: linkedin,
-        instagram: instagram,
-        youtube: youtube,
-        other: other,
-        bio: bio,
-    })   
-    res.json('Creator Registered!')
+    try {
+        CreatorModel.create({
+            creator: creator,
+            avatar: avatar,
+            twitter: twitter,
+            linkedin: linkedin,
+            instagram: instagram,
+            youtube: youtube,
+            other: other,
+            bio: bio,
+        })   
+        res.json('Creator Registered!')
     } catch(err) {
         res.status(400).json({ error: err });
     }
@@ -28,7 +28,7 @@ try {
 export const getCreator = async (req, res) => {
     const { creator } = req.params;
 
-try {
+    try {
         const author = await CreatorModel.findOne(creator);
         
         res.status(200).json(author);
@@ -42,17 +42,17 @@ export const editCreator = async (req, res) => {
     const { creatorId } = req.params;
     const { creator, twitter, instagram, linkedin, youtube, other, bio } = req.body;
 
-try {
-   CreatorModel.findOneAndUpdate({creatorId}, {
-        creator: creator,
-        avatar: avatar,
-        twitter: twitter,
-        linkedin: linkedin,
-        instagram: instagram,
-        youtube: youtube,
-        other: other,
-        bio: bio,
-    },
+    try {
+        CreatorModel.findOneAndUpdate({creatorId}, {
+            creator: creator,
+            avatar: avatar,
+            twitter: twitter,
+            linkedin: linkedin,
+            instagram: instagram,
+            youtube: youtube,
+            other: other,
+            bio: bio,
+        },
         { new: true }),
         res.json('Creator Edited!')
     } catch(err) {
