@@ -9,6 +9,9 @@ const CreatorSchema = new mongoose.Schema({
     avatar: {
         type: String,
     },
+    username: {
+        type: String,
+    },
     role: {
         type: String,
     },
