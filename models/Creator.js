@@ -1,25 +1,15 @@
-
 import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema({
-    username: {
+const CreatorSchema = new mongoose.Schema({
+    creator: {
         type: String,
         allowNull: false,
         unique: true,
     },
-    email: {
+    avatar: {
         type: String,
-        allowNull: false,
-        unique: true,
-    },
-    password: {
-        type: String,
-        allowNull: false,
     },
     role: {
-        type: String,
-    },
-    joinDate: {
         type: String,
     },
     bio: {
@@ -42,4 +32,4 @@ const UserSchema = new mongoose.Schema({
     },
 })
 
-export const UserModel = mongoose.model("User", UserSchema);
+export const CreatorModel = mongoose.model("Creator", CreatorSchema);
