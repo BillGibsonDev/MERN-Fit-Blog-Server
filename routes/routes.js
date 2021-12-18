@@ -5,7 +5,7 @@ import { createUser, loginUser, confirmAdmin, confirmRole, getRole, getDate } fr
 import { createPost, getPost, getPosts, deletePost, editPost } from "../controllers/PostController.js";
 import { createComment, deleteComment } from "../controllers/CommentController.js";
 import { addLike, removeLike, findLike } from "../controllers/LikeController.js";
-import { getCreator, createCreator, editCreator } from '../controllers/CreatorContorller.js';
+import { getCreator, createCreator, editCreator } from '../controllers/CreatorController.js';
 
 const router = express.Router();
 dotenv.config();

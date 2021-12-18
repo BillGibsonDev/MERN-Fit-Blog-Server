@@ -19,6 +19,7 @@ try {
         other: other,
         bio: bio,
     })   
+    res.json('Creator Registered!')
     } catch(err) {
         res.status(400).json({ error: err });
     }
@@ -52,7 +53,8 @@ try {
         other: other,
         bio: bio,
     },
-        { new: true })   
+        { new: true }),
+        res.json('Creator Edited!')
     } catch(err) {
         res.status(400).json({ error: err });
     }
