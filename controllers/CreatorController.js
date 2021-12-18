@@ -30,7 +30,7 @@ export const getCreator = async (req, res) => {
     const { authorUsername } = req.params;
 
     try {
-        const author = await CreatorModel.find(authorUsername);
+        const author = await CreatorModel.find({"authorUsername": authorUsername});
         
         res.status(200).json(author);
     } catch (error) {
