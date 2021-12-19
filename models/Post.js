@@ -47,6 +47,9 @@ const PostSchema = new mongoose.Schema({
     tag: {
         type: String,
     },
+    authorUsername: {
+        type: String,
+    }
 })
 
 export const PostModel = mongoose.model("Post", PostSchema);
