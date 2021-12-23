@@ -22,24 +22,6 @@ const UserSchema = new mongoose.Schema({
     joinDate: {
         type: String,
     },
-    bio: {
-        type: String,
-    },
-    twitter: {
-        type: String,
-    },
-    instagram: {
-        type: String,
-    },
-    linkedin: {
-        type: String,
-    },
-    youtube: {
-        type: String,
-    },
-    other: {
-        type: String,
-    },
 })
 
 export const UserModel = mongoose.model("User", UserSchema);

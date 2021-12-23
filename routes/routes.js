@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
-import { createUser, loginUser, confirmAdmin, confirmRole, getRole, getDate } from "../controllers/UserController.js";
+import { createUser, loginUser, confirmAdmin, confirmRole, getRole, getDate, deleteAccount } from "../controllers/UserController.js";
 import { createPost, getPost, getPosts, deletePost, editPost } from "../controllers/PostController.js";
 import { createComment, deleteComment } from "../controllers/CommentController.js";
 import { addLike, removeLike, findLike } from "../controllers/LikeController.js";
@@ -36,5 +36,6 @@ router.post(`/${process.env.NODE_ENV_ADD_CREATOR_URL}`, createCreator);
 router.delete(`/${process.env.NODE_ENV_DELETE_POST_URL}/:postId`, deletePost);
 router.post(`/${process.env.NODE_ENV_DELETE_COMMENT_URL}/:postId/:commentId`, deleteComment);
 router.post(`/${process.env.NODE_ENV_REMOVE_LIKE_URL}/:postId`, removeLike);
+router.post(`/${process.env.NODE_ENV_DELETE_ACCOUNT_URL}/:postId`, deleteAccount);
 
 export default router;

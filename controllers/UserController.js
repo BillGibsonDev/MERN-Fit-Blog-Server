@@ -62,24 +62,6 @@ export const createUser = async (req, res) => {
     });
   };
 
-// not tested \0/
-export const updateUser = async (req, res) =>{
-    const { username, password, newpassword} = req.body;
-
-    const userPassword = user.password;
-    bcrypt.compare(password, userPassword).then((match) => {
-      if (!match) {
-        res
-          .status(400)
-          .json({ error: "Wrong Username or Password!" });
-      } else {
-        UserModel.findOneAndUpdate({username: username },{password: newpassword});
-        res.json("User Updated");
-      }
-    });
-  };
-
-
   export const getRole = async (req, res) =>{
     const { username, password } = req.body;
 
@@ -138,6 +120,26 @@ export const updateUser = async (req, res) =>{
           .json({ error: "Wrong Username or Password!" });
       } else {
         res.json(user.joinDate);
+      }
+    });
+  };
+
+  export const deleteAccount = async (req, res) =>{
+    const { username, password } = req.body;
+
+    const user = await UserModel.findOne({username: username });
+  
+    if (!user) res.status(400).json({ error: "User Doesn't Exist" });
+  
+    const userPassword = user.password;
+    bcrypt.compare(password, userPassword).then((match) => {
+      if (!match) {
+        res
+          .status(400)
+          .json({ error: "Wrong Username or Password!" });
+      } else {
+        UserModel.findOneAndDelete({username: username });
+        res.json("Account Deleted")
       }
     });
   };
