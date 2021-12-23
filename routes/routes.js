@@ -36,6 +36,6 @@ router.post(`/${process.env.NODE_ENV_ADD_CREATOR_URL}`, createCreator);
 router.delete(`/${process.env.NODE_ENV_DELETE_POST_URL}/:postId`, deletePost);
 router.post(`/${process.env.NODE_ENV_DELETE_COMMENT_URL}/:postId/:commentId`, deleteComment);
 router.post(`/${process.env.NODE_ENV_REMOVE_LIKE_URL}/:postId`, removeLike);
-router.post(`/${process.env.NODE_ENV_DELETE_ACCOUNT_URL}/:postId`, deleteAccount);
+router.post(`/${process.env.NODE_ENV_DELETE_ACCOUNT_URL}`, deleteAccount);
 
 export default router;
